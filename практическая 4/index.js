@@ -1,290 +1,284 @@
-// 1. 
-let arr1 = ['item1', 'item2', 'item3'];
-let ul = document.getElementById('elem');
+// 1.  2. 
+let arr = ['apple', 'banana', 'orange'];
+const elemUl = document.getElementById('elem');
 
-arr1.forEach(item => {
-  let li = document.createElement('li');
-  li.textContent = item;
-  ul.appendChild(li);
+arr.forEach(item => {
+    let li = document.createElement('li');
+    li.textContent = item;
+    li.addEventListener('click', () => {
+        alert(li.textContent);
+    });
+    elemUl.appendChild(li);
 });
 
-// 2. 
-ul.addEventListener('click', function(event) {
-  if (event.target.tagName === 'LI') {
-    alert(event.target.textContent);
-  }
-});
 
-// 3. 
-let table3 = document.createElement('table');
-for (let i = 0; i < 5; i++) {
-  let row = table3.insertRow();
-  for (let j = 0; j < 5; j++) {
-    row.insertCell();
-  }
-}
-document.body.appendChild(table3);
 
-// 4. 
-let table4 = document.createElement('table');
+// 3.  4. 
+const table1 = document.getElementById('table1');
 for (let i = 0; i < 5; i++) {
-  let row = table4.insertRow();
-  for (let j = 0; j < 5; j++) {
-    let cell = row.insertCell();
-    cell.textContent = 'x';
-  }
+    let row = table1.insertRow();
+    for (let j = 0; j < 5; j++) {
+        let cell = row.insertCell();
+        cell.textContent = 'x'; 
+    }
 }
-document.body.appendChild(table4);
 
 
 // 5. 
-let table5 = document.createElement('table');
+const table2 = document.getElementById('table2');
 let num = 1;
 for (let i = 0; i < 5; i++) {
-  let row = table5.insertRow();
-  for (let j = 0; j < 5; j++) {
-    let cell = row.insertCell();
-    cell.textContent = num++;
-  }
+    let row = table2.insertRow();
+    for (let j = 0; j < 5; j++) {
+        let cell = row.insertCell();
+        cell.textContent = num++;
+    }
 }
-document.body.appendChild(table5);
+
 
 // 6. 
-let arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]];
-let table6 = document.createElement('table');
-arr.forEach(rowArr => {
-  let row = table6.insertRow();
-  rowArr.forEach(item => {
-    let cell = row.insertCell();
-    cell.textContent = item;
-  });
+let arr2d = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]];
+const table3 = document.getElementById('table3');
+
+arr2d.forEach(rowArr => {
+    let row = table3.insertRow();
+    rowArr.forEach(item => {
+        let cell = row.insertCell();
+        cell.textContent = item;
+    });
 });
-document.body.appendChild(table6);
+
 
 // 7. 
 let employees = [
- {name: 'employee1', age: 30, salary: 400},
- {name: 'employee2', age: 31, salary: 500},
- {name: 'employee3', age: 32, salary: 600},
+    {name: 'employee1', age: 30, salary: 400},
+    {name: 'employee2', age: 31, salary: 500},
+    {name: 'employee3', age: 32, salary: 600},
 ];
 
-let table7 = document.createElement('table');
-let headerRow = table7.insertRow();
-Object.keys(employees[0]).forEach(key => {
+const table4 = document.getElementById('table4');
+let headerRow = table4.insertRow();
+Object.keys(employees[0]).forEach(key => {  
     let headerCell = headerRow.insertCell();
     headerCell.textContent = key;
 });
 
 employees.forEach(employee => {
-  let row = table7.insertRow();
-  Object.values(employee).forEach(value => {
-    let cell = row.insertCell();
-    cell.textContent = value;
-  });
+    let row = table4.insertRow();
+    Object.values(employee).forEach(value => {
+        let cell = row.insertCell();
+        cell.textContent = value;
+    });
 });
-
-document.body.appendChild(table7);
-
 
 
 // 8. 
-let table8 = document.querySelector('table'); 
-let button8 = document.createElement('button');
-button8.textContent = 'Удвоить числа';
+const table5 = document.getElementById('table5'); 
+const doubleButton = document.getElementById('doubleButton');
 
-button8.addEventListener('click', () => {
-    let cells = table8.querySelectorAll('td');
-    cells.forEach(cell => {
-        let num = parseInt(cell.textContent);
-        if (!isNaN(num)) {
-            cell.textContent = num * 2;
+
+for (let i = 0; i < 3; i++) {  
+    let row = table5.insertRow();
+    for (let j = 0; j < 3; j++) {
+        let cell = row.insertCell();
+        cell.textContent = (i * 3) + j + 1;
+    }
+}
+
+doubleButton.addEventListener('click', () => {
+    for (let i = 0; i < table5.rows.length; i++) {
+        for (let j = 0; j < table5.rows[i].cells.length; j++) {
+            let cell = table5.rows[i].cells[j];
+            cell.textContent = parseInt(cell.textContent) * 2; 
         }
-    });
-});
-
-document.body.appendChild(button8);
-
-
-
-// 9. 
-let parent9 = document.getElementById('parent');
-let button9 = document.getElementById('button');
-
-button9.addEventListener('click', () => {
-  let li = document.createElement('li');
-  li.textContent = parent9.children.length + 1;
-  parent9.appendChild(li); 
-});
-
-parent9.addEventListener('click', (event) => {
- if (event.target.tagName === 'LI') {
-    parent9.removeChild(event.target);
- }
-});
-
-
-
-
-
-// 10. 
-let ul10 = document.querySelector('ul'); 
-let liElements = ul10.querySelectorAll('li');
-
-liElements.forEach(li => {
-    let a = document.createElement('a');
-    a.href = '#';
-    a.textContent = ' [Удалить]';
-    a.addEventListener('click', function(event) {
-        event.preventDefault();
-        ul10.removeChild(li);
-    });
-    li.appendChild(a);
-});
-
-
-
-
-// 11. 
-let ul11 = document.querySelector('ul'); 
-
-ul11.addEventListener('click', function(event) {
-    if (event.target.tagName === 'LI') {
-        let li = event.target;
-        let input = document.createElement('input');
-        input.type = 'text';
-        input.value = li.textContent;
-
-        input.addEventListener('blur', function() {
-            li.textContent = this.value;
-            li.removeChild(this);
-        });
-
-        li.textContent = '';
-        li.appendChild(input);
-        input.focus();
     }
 });
 
 
-// 12. 
-let parent12 = document.getElementById('parent');
-let paragraphs = parent12.querySelectorAll('p');
 
-paragraphs.forEach(p => {
-    let a = document.createElement('a');
-    a.href = '#';
-    a.textContent = ' [Удалить]';
-    a.addEventListener('click', function(event) {
-        event.preventDefault();
-        parent12.removeChild(p);
-    });
-    p.appendChild(a);
+ 
+// 9. 
+const parentUl = document.getElementById('parent');
+const addButton = document.getElementById('button');
 
-
-    let span = p.querySelector('span');
-    span.addEventListener('click', function() {
-         let input = document.createElement('input');
-         input.type = 'text';
-         input.value = span.textContent;
-
-         input.addEventListener('blur', function() {
-            span.textContent = this.value;
-            span.removeChild(this);
-        });
-
-
-        span.textContent = '';
-         span.appendChild(input);
-         input.focus();
-    });
+addButton.addEventListener('click', () => {
+    let li = document.createElement('li');
+    li.textContent = parentUl.children.length + 1;
+    li.addEventListener('click', () => li.remove());
+    parentUl.appendChild(li);
 });
 
-
-// 13. 
-let paragraphs13 = document.querySelectorAll('p');
-
-paragraphs13.forEach(p => {
-  let a = document.createElement('a');
-  a.href = '#';
-  a.textContent = ' [Перечеркнуть]';
-
-    a.addEventListener('click', function(event) {
-    event.preventDefault();
-        if (p.style.textDecoration === 'line-through') {
-              p.style.textDecoration = 'none';
-        } else {
-             p.style.textDecoration = 'line-through';
-            }
-    });
-
-  p.appendChild(a);
+parentUl.addEventListener('click', (event) => {
+    if (event.target.tagName === 'LI') {
+        event.target.remove();
+    }
 });
 
 
 
-// 14. 
-let ul14 = document.querySelector('ul');
-ul14.addEventListener('click', function(event) {
-  if (event.target.tagName === 'LI') {
-     
-    Array.from(ul14.children).forEach(li => li.style.backgroundColor = '');
+// 10. 
+const listWithDeleteLinks = document.getElementById('listWithDeleteLinks');
 
-      
-    event.target.style.backgroundColor = 'red';
-  }
-});
+for (let i = 1; i <= 3; i++) {
+    let li = document.createElement('li');
+    li.textContent = `Item ${i} `;
 
+    let deleteLink = document.createElement('a');
+    deleteLink.href = '#';
+    deleteLink.textContent = 'Delete';
+    deleteLink.addEventListener('click', (event) => {
+        event.preventDefault(); 
+        li.remove();
+    });
+
+    li.appendChild(deleteLink);
+    listWithDeleteLinks.appendChild(li);
+}
+
+// ... (Other solutions follow the same logic as in the previous response)
+//  Continue for tasks 11-20...
+
+
+// ... other solutions as provided earlier
 
 // 15. 
 function appendText(selector, text) {
-  let elements = document.querySelectorAll(selector);
-  elements.forEach(element => {
-    element.textContent += text;
+  document.querySelectorAll(selector).forEach(el => {
+    el.textContent += text;
   });
 }
 
 
 // 16. 
-let paragraphs16 = document.querySelectorAll('p');
-Array.from(paragraphs16).forEach(p => appendText('p', '!'));  
+document.querySelectorAll('.paragraph').forEach(p => appendText(p, '!'));
+
+// 17.  
+document.querySelectorAll(".paragraph").forEach((p, index) => {
+    p.textContent = index + 1 + ". " + p.textContent;
+});
 
 
 
-// 17. 
-let paragraphs17 = document.querySelectorAll('p');
-Array.from(paragraphs17).forEach((p, index) => p.textContent = (index + 1) + '. ' + p.textContent );
-
-
- // 18. 
+// 18. 
 function appendText(element, text) {
- element.textContent += text;
+    element.textContent += text;
 }
 
 // 19. 
 function appendElem(ulElement, text) {
-  let li = document.createElement('li');
-  li.textContent = text;
-  ulElement.appendChild(li);
+    let li = document.createElement('li');
+    li.textContent = text;
+    ulElement.appendChild(li);
 }
 
-// 20. 
-function createTable(rows, cols) {
-	const table = document.createElement('table');
-	for (let i = 0; i < rows; i++) {
-	  const row = table.insertRow();
-	  for (let j = 0; j < cols; j++) {
-		row.insertCell();
-	  }
-	}
-	return table;
+//20. 
+function createTable(rows, cols) {   
+    const table = document.createElement('table');
+    for (let i = 0; i < rows; i++) {
+        const row = table.insertRow();
+        for (let j = 0; j < cols; j++) {
+            const cell = row.insertCell();
+            cell.textContent = 'x';  
+        }
+    }
+    return table;
+}
+
+const elemForTable = document.getElementById('elemForTable');
+const newTable = createTable(3, 3);  
+elemForTable.appendChild(newTable);
+
+
+
+// 11. 
+
+const editableList = document.getElementById('editableList');
+
+for (let i = 1; i <= 3; i++) {
+    const li = document.createElement('li');
+    li.textContent =  `Editable item ${i}`;
+    editableList.appendChild(li);
+
+    li.addEventListener('click', () => {
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.value = li.textContent; 
+
+
+        li.innerHTML = ''; 
+        li.appendChild(input);
+
+
+        input.addEventListener('blur', () => { 
+            li.textContent = input.value;
+        });
+
+        input.focus(); 
+    });
+
+
+}
+
+
+
+ // 12. 
+const parentDiv = document.getElementById('parentDiv');
+
+parentDiv.querySelectorAll('p').forEach((p, index) => {
+    const span = p.querySelector('span');
+    const deleteLink = document.createElement('a');
+    deleteLink.href = '#';
+    deleteLink.textContent = 'Delete';
+
+    deleteLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        p.remove();
+    });
+
+    p.appendChild(deleteLink);
+
+
+    span.addEventListener('click', () => {
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.value = span.textContent; 
+
+        span.innerHTML = ''; 
+        span.appendChild(input);
+
+
+
+        input.addEventListener('blur', () => {
+            span.textContent = input.value;
+        });
+
+        input.focus();
+    });
+});
+
+
+
+//13. 
+document.querySelectorAll('p:not(.paragraph)').forEach(p => { 
+    const link = document.createElement('a');
+    link.href = '#';
+    link.textContent = 'Strike';
+    link.addEventListener('click', (event) => {
+        event.preventDefault();
+        p.style.textDecoration = p.style.textDecoration === 'line-through' ? '' : 'line-through';
+
+    });
+    p.appendChild(link);
+});
+
+
+
+// 14. 
+const activatableList = document.getElementById('activatableList');
+activatableList.addEventListener('click', function(event) {
+  if (event.target && event.target.nodeName == "LI") {
+     
+     Array.from(this.children).forEach(li => li.classList.remove('active'));
+     event.target.classList.add('active');
   }
-  
-  const divElem = document.getElementById('elem');
-  const newTable = createTable(3, 3); 
-  divElem.appendChild(newTable);
-
-
-
-
-
-
+});
